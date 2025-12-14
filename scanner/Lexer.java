@@ -3,6 +3,8 @@ package scanner;
 import java.util.ArrayList;
 import java.util.Map;
 
+import utils.TPLError;
+
 import static java.util.Map.entry;  
 
 /**
@@ -63,7 +65,7 @@ public class Lexer {
         return this;
     }
     
-    public ArrayList<Token> tokenize() {
+    public ArrayList<Token> tokenize() throws Exception {
 
         // get all tokens
         while (!isAtEnd()) {
@@ -101,20 +103,19 @@ public class Lexer {
             // Numbers (Ints and Decimals)
             if (isDigit(c)) {scanNumber(start); continue;}
 
-            System.err.println("Unexpected Token: " + c);
-            System.exit(1);
+            throw utils.TPLError.unexpectedTokenException(c, line);
         }
 
         addToken(Token.Type.EOF, '\0', null);
 		return tokens;
     }
 
-    private void scanString(int start) {
+    private void scanString(int start) throws Exception {
         assert(input.charAt(start) == '\"');
+        int startLine = line;
         while (peek() != '\"' && !isAtEnd()) {advance();}
         if (isAtEnd()) {
-            System.err.println("Undeterminated String!");
-            System.exit(1);
+            throw utils.TPLError.undeterminatedStringException(input.substring(start+1), startLine);
         }
         advance();
         String str = input.substring(start+1, index-1);

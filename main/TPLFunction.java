@@ -22,7 +22,7 @@ public class TPLFunction implements ITPLFunction {
     @Override
     public Object eval(TPLScope scope, Object[] args) throws Exception {
         if (ARGSNAMES.length != args.length) {
-            throw utils.Error.invalidNargsException(NAME, ARGSNAMES.length, args.length);
+            throw utils.TPLError.invalidNargsException(NAME, ARGSNAMES.length, args.length);
         }
         int nargs = args.length;
         var program = seq.PROGRAM;

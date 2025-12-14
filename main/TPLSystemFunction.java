@@ -10,7 +10,7 @@ public enum TPLSystemFunction implements ITPLFunction {
         @Override
         public Object eval(Object[] args) throws IllegalArgumentException {
             if (args.length != 1) {
-                throw utils.Error.invalidNargsException("len", 1, args.length);
+                throw utils.TPLError.invalidNargsException("len", 1, args.length);
             }
             var obj = args[0];
             if (obj.getClass() == String.class) {
@@ -19,7 +19,7 @@ public enum TPLSystemFunction implements ITPLFunction {
             if (obj.getClass() == DataType.ARRAY_CLASS) {
                 return Double.valueOf(((Object[])obj).length);
             }
-            throw utils.Error.invalidArgTypeException("len", Collection.class, obj.getClass());
+            throw utils.TPLError.invalidArgTypeException("len", Collection.class, obj.getClass());
         }
     },
 
@@ -27,7 +27,7 @@ public enum TPLSystemFunction implements ITPLFunction {
         @Override
         public Object eval(Object[] args) throws Exception {
             if (args.length != 0) {
-                throw utils.Error.invalidNargsException("random", 0, args.length);
+                throw utils.TPLError.invalidNargsException("random", 0, args.length);
             }
             return Double.valueOf(Math.random());
         }

@@ -13,7 +13,7 @@ import utils.Utils;
 public class ScannerTests {
 
     @Test
-    public void testScanner0() {
+    public void testScanner0() throws Exception {
         String raw = Utils.loadSPL("spl/expressions.spl");
         Lexer scanner = new Lexer(raw);
         ArrayList<Token> tokens = scanner.tokenize();
@@ -28,7 +28,7 @@ public class ScannerTests {
     }
 
     @Test
-    public void testScannerSimple0() {
+    public void testScannerSimple0() throws Exception {
         Lexer scanner = new Lexer("var b = true;");
         ArrayList<Token> tokens = scanner.tokenize();
         int n = tokens.size();

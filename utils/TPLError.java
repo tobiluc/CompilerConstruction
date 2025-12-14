@@ -1,6 +1,14 @@
 package utils;
 
-public class Error {
+public class TPLError {
+
+    public static Exception unexpectedTokenException(char symbol, int line) {
+        return new Exception(String.format("Line %d: Unexpected Token \"%s\"", line, symbol));
+    }
+
+    public static Exception undeterminatedStringException(String str, int line) {
+        return new Exception(String.format("Line %d: Undterminated String \"%s...", line, str));
+    }
     
     public static IllegalArgumentException invalidNargsException(String funcName, int expected, int actual) {
         return new IllegalArgumentException(String.format("Invalid number of arguments for function %s, expected %d but got %d", funcName, expected, actual));

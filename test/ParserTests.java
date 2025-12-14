@@ -52,7 +52,7 @@ public class ParserTests {
     }
 
     @Test
-    public void testParseFactor() {
+    public void testParseFactor() throws Exception {
         DataType.init();
 
         var parser = new Parser();
@@ -67,7 +67,7 @@ public class ParserTests {
     }
 
     @Test
-    public void testParseTrueOrFalse() {
+    public void testParseTrueOrFalse() throws Exception {
         DataType.init();
 
         var parser = new Parser();
@@ -97,7 +97,7 @@ public class ParserTests {
     }
 
     @Test
-    public void testSimpleIf2() {
+    public void testSimpleIf2() throws Exception {
         DataType.init();
 
         var parser = new Parser();
@@ -108,7 +108,7 @@ public class ParserTests {
     }
 
     @Test
-    public void testSimpleFor() {
+    public void testSimpleFor() throws Exception {
         DataType.init();
 
         var parser = new Parser();
@@ -118,7 +118,7 @@ public class ParserTests {
     }
 
     @Test
-    public void testStringIndex() {
+    public void testStringIndex() throws Exception {
         DataType.init();
 
         var parser = new Parser();
@@ -130,7 +130,7 @@ public class ParserTests {
     }
 
     @Test
-    public void testArray() {
+    public void testArray() throws Exception {
         DataType.init();
 
         var parser = new Parser();
@@ -148,7 +148,7 @@ public class ParserTests {
     }
 
     @Test
-    public void testPow() {
+    public void testPow() throws Exception {
         DataType.init();
 
         var parser = new Parser(new Lexer().reset("var a = 2^3^2;").tokenize());

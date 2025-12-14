@@ -116,7 +116,7 @@ public abstract class DataType {
                 return tc.apply(from);
             }
         }
-        throw utils.Error.undefinedCastException(from.getClass(), to);
+        throw utils.TPLError.undefinedCastException(from.getClass(), to);
     }
 
     /**
@@ -137,7 +137,7 @@ public abstract class DataType {
                 return u.apply(v);
             }
         }
-        throw utils.Error.undefinedUnaryException(type.name(), v.getClass());
+        throw utils.TPLError.undefinedUnaryException(type.name(), v.getClass());
     }
 
     /**
@@ -163,6 +163,6 @@ public abstract class DataType {
                 }
             }
         }
-        throw utils.Error.undefinedBinaryException(type.name(), lhs.getClass(), rhs.getClass());
+        throw utils.TPLError.undefinedBinaryException(type.name(), lhs.getClass(), rhs.getClass());
     }
 }

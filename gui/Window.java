@@ -1,22 +1,27 @@
 package gui;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import parser.Parser;
 import scanner.Lexer;
+import scanner.Token;
 import utils.Utils;
 
 public class Window extends JFrame {
@@ -42,7 +47,7 @@ public class Window extends JFrame {
         setJMenuBar(mb);
 
         this.editor = new Editor();
-        add(editor);
+        this.add(editor);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
@@ -72,7 +77,12 @@ public class Window extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lexer.reset(editor.getText());
-                var tokens = lexer.tokenize();
+                ArrayList<Token> tokens = new ArrayList<>();
+                try {
+                    tokens = lexer.tokenize();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
 
                 tokensLbl.setText(Utils.collectionToString(tokens, '\n'));
 
